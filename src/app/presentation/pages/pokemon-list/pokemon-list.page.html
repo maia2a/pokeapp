@@ -1,13 +1,31 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>pokemon-list</ion-title>
+    <ion-title>PokéApp</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">pokemon-list</ion-title>
+      <ion-title size="large">PokéApp</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list>
+    <ion-item *ngFor="let pokemon of pokemons">
+      <ion-avatar slot="start">
+        <img [src]="pokemon.imageUrl" alt="pokemon.name" />
+      </ion-avatar>
+      <ion-label class="ion-text-capitalize">
+        <h2>{{ pokemon.name }}</h2>
+        <p>#{{pokemon.id.toString().padStart(4,'0')}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content>
+      loadingSpinner= "bubbles" loadingText= "Buscando mais pokemons..."
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
