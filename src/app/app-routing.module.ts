@@ -9,8 +9,15 @@ export const routes: Routes = [
   {
     path: 'pokemon-list',
     loadChildren: () =>
-      import('./presentation/pages/pokemon-list/pokemon-list.module').then(
-        (m) => m.PokemonListPageModule
+      import('./presentation/pages/pokemon-list/pokemon-list.page').then(
+        (m) => m.PokemonListPage
+      ),
+  },
+  {
+    path: 'pokemon-detail/:id',
+    loadComponent: () =>
+      import('./presentation/pages/pokemon-detail/pokemon-detail.page').then(
+        (m) => m.PokemonDetailPage
       ),
   },
 ];

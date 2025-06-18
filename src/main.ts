@@ -1,10 +1,5 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import {
-  PreloadAllModules,
-  RouteReuseStrategy,
-  provideRouter,
-  withPreloading,
-} from '@angular/router';
+import { RouteReuseStrategy, provideRouter } from '@angular/router';
 import {
   IonicRouteStrategy,
   provideIonicAngular,
@@ -13,10 +8,26 @@ import {
 import { routes } from './app/app-routing.module';
 import { AppComponent } from './app/app.component';
 
+import { provideHttpClient } from '@angular/common/http';
+import { enableProdMode } from '@angular/core';
+import { PokemonRepositoryImpl } from './app/data/repositories/pokemon.repository.impl';
+import { PokemonRepository } from './app/domain/models/pokemon.repository';
+import { environment } from './environments/environment.prod';
+
+if (environment.production) {
+  enableProdMode();
+}
+
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
-    provideRouter(routes, withPreloading(PreloadAllModules)),
+    provideRouter(routes),
+
+    provideHttpClient(),
+    {
+      provide: PokemonRepository,
+      useClass: PokemonRepositoryImpl,
+    },
   ],
 });
