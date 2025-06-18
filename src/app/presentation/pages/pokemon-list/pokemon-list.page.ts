@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { InfiniteScrollCustomEvent, IonicModule } from '@ionic/angular';
-import { PokemonDetail } from 'src/app/domain/models/pokemon-detail.model';
-import { GetPokemonUseCase } from 'src/app/domain/usecases/get-pokemons.usecase';
+import { Pokemon } from 'src/app/domain/models/pokemon.model';
+import { GetPokemonsUseCase } from 'src/app/domain/usecases/get-pokemons.usecase';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -13,10 +13,10 @@ import { GetPokemonUseCase } from 'src/app/domain/usecases/get-pokemons.usecase'
   imports: [IonicModule, CommonModule, RouterLink],
 })
 export class PokemonListPage implements OnInit {
-  pokemons: PokemonDetail[] = [];
+  pokemons: Pokemon[] = [];
   private offset = 0;
   private readonly limit = 25;
-  constructor(private getPokemonsUseCase: GetPokemonUseCase) {}
+  constructor(private getPokemonsUseCase: GetPokemonsUseCase) {}
 
   ngOnInit() {
     this.loadPokemons();
@@ -24,7 +24,7 @@ export class PokemonListPage implements OnInit {
 
   loadPokemons(event?: InfiniteScrollCustomEvent) {
     this.getPokemonsUseCase.execute(this.offset, this.limit).subscribe({
-      next: (newPokemons) => {
+      next: (newPokemons: Pokemon[]) => {
         this.pokemons = [...this.pokemons, ...newPokemons];
         this.offset += this.limit;
 
@@ -38,7 +38,7 @@ export class PokemonListPage implements OnInit {
     });
   }
   //Este metodo sera chamado pelo componente de scroll infinito
-  onIonInfinite(event: InfiniteScrollCustomEvent) {
-    this.loadPokemons(event);
+  onIonInfinite(event: any) {
+    this.loadPokemons(event as InfiniteScrollCustomEvent);
   }
 }

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Meus Favoritos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ng-container *ngIf="(favorites | async) as favorites">
+    <div *ngIf="favorites.length === 0" class="ion-text-center ion-padding">
+      <p>Você ainda não marcou nenhum Pokémon como favorito.</p>
+      <ion-button routerLink="/pokemon-list">Ver Pokédex</ion-button>
+    </div>
+
+    <ion-list *ngIf="favorites.length > 0">
+      <ion-item
+        *ngFor="let pokemon of favorites"
+        [routerLink]="['/pokemon-detail', pokemon.id]"
+        button
+        detail="true"
+      >
+        <ion-avatar slot="start">
+          <img [src]="pokemon.imageUrl" [alt]="pokemon.name" />
+        </ion-avatar>
+        <ion-label class="ion-text-capitalize">
+          <h2>{{ pokemon.name }}</h2>
+          <p>#{{ pokemon.id.toString().padStart(4, '0') }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+</ion-content>

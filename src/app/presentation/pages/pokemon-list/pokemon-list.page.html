@@ -19,11 +19,11 @@
       detail="true"
     >
       <ion-avatar slot="start">
-        <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
+        <img [src]="pokemon.imageUrl" [alt]="pokemon.name" />
       </ion-avatar>
       <ion-label class="ion-text-capitalize">
         <h2>{{ pokemon.name }}</h2>
-        <p>#{{pokemon.id.toString().padStart(4,'0')}}</p>
+        <p>#{{ pokemon.id.toString().padStart(4, '0') }}</p>
       </ion-label>
     </ion-item>
   </ion-list>

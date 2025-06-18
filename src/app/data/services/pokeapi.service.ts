@@ -18,25 +18,22 @@ export class PokeApiService {
 
   // MÉTODO PARA A LISTA DE POKÉMONS
   getPokemons(offset: number, limit: number): Observable<Pokemon[]> {
-    // A URL É CONSTRUÍDA COM UMA TEMPLATE STRING SIMPLES
+    // <-- Deve retornar Pokemon[]
     const url = `${this.API_URL}?offset=${offset}&limit=${limit}`;
-
-    console.log('Buscando Pokémons em:', url); // Adicionamos um log para depuração
-
-    return this.http
-      .get<PokeApiListResponse>(url) // Usamos a URL construída
-      .pipe(
-        map((response) => {
-          return response.results.map((pokemonResult) => {
-            const id = this.getPokemonIdFromUrl(pokemonResult.url);
-            return {
-              id,
-              name: pokemonResult.name,
-              imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
-            };
-          });
-        })
-      );
+    return this.http.get<PokeApiListResponse>(url).pipe(
+      map((response) => {
+        return response.results.map((pokemonResult) => {
+          const id = this.getPokemonIdFromUrl(pokemonResult.url);
+          // O objeto criado deve ser do tipo Pokemon
+          const pokemon: Pokemon = {
+            id,
+            name: pokemonResult.name,
+            imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+          };
+          return pokemon;
+        });
+      })
+    );
   }
 
   // MÉTODO PARA OS DETALHES DE UM POKÉMON

@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
 import { PokemonDetail } from './pokemon-detail.model';
+import { Pokemon } from './pokemon.model';
 
 export abstract class PokemonRepository {
   /**
@@ -9,10 +10,7 @@ export abstract class PokemonRepository {
    * @returns Um Observable com um array de Pokémons.
    */
 
-  abstract getPokemons(
-    offset: number,
-    limit: number
-  ): Observable<PokemonDetail[]>;
+  abstract getPokemons(offset: number, limit: number): Observable<Pokemon[]>;
 
   /**
    * Contrato para obter um Pokémon específico por ID.

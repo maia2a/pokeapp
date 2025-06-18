@@ -11,27 +11,8 @@ import { PokeApiService } from '../services/pokeapi.service';
 export class PokemonRepositoryImpl implements PokemonRepository {
   constructor(private pokeApiService: PokeApiService) {}
 
-  getPokemons(offset: number, limit: number): Observable<PokemonDetail[]> {
-    return this.pokeApiService.getPokemons(limit, offset).pipe(
-      map((pokemons: Pokemon[]) => {
-        // Transform Pokemon[] to PokemonDetail[]
-        return pokemons.map((pokemon) => ({
-          id: pokemon.id,
-          name: pokemon.name,
-          height: 0, // These will need to be fetched separately or from the Pokemon model
-          weight: 0,
-          sprites: {
-            front_default: pokemon.imageUrl,
-            front_shiny: pokemon.imageUrl, // Using same image for now
-            back_default: pokemon.imageUrl,
-            back_shiny: pokemon.imageUrl,
-          },
-          abilities: [], // Will need to be fetched separately
-          stats: [], // Will need to be fetched separately
-          types: [], // Will need to be fetched separately
-        }));
-      })
-    );
+  getPokemons(offset: number, limit: number): Observable<Pokemon[]> {
+    return this.pokeApiService.getPokemons(offset, limit);
   }
 
   getPokemonById(id: number): Observable<PokemonDetail> {
