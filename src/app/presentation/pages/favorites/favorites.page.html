@@ -5,15 +5,15 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ng-container *ngIf="(favorites | async) as favorites">
-    <div *ngIf="favorites.length === 0" class="ion-text-center ion-padding">
+  <ng-container *ngIf="(favorites$ | async) as favs">
+    <div *ngIf="favs.length === 0" class="ion-text-center ion-padding">
       <p>Você ainda não marcou nenhum Pokémon como favorito.</p>
       <ion-button routerLink="/pokemon-list">Ver Pokédex</ion-button>
     </div>
 
-    <ion-list *ngIf="favorites.length > 0">
+    <ion-list *ngIf="favs.length > 0">
       <ion-item
-        *ngFor="let pokemon of favorites"
+        *ngFor="let pokemon of favs"
         [routerLink]="['/pokemon-detail', pokemon.id]"
         button
         detail="true"
