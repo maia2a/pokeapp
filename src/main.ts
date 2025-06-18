@@ -5,11 +5,11 @@ import {
   provideIonicAngular,
 } from '@ionic/angular/standalone';
 
-import { routes } from './app/app-routing.module';
 import { AppComponent } from './app/app.component';
 
 import { provideHttpClient } from '@angular/common/http';
 import { enableProdMode } from '@angular/core';
+import { routes } from './app/app.routes';
 import { PokemonRepositoryImpl } from './app/data/repositories/pokemon.repository.impl';
 import { PokemonRepository } from './app/domain/models/pokemon.repository';
 import { environment } from './environments/environment.prod';

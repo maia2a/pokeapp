@@ -8,7 +8,7 @@ export const routes: Routes = [
   },
   {
     path: 'pokemon-list',
-    loadChildren: () =>
+    loadComponent: () =>
       import('./presentation/pages/pokemon-list/pokemon-list.page').then(
         (m) => m.PokemonListPage
       ),
@@ -21,3 +21,5 @@ export const routes: Routes = [
       ),
   },
 ];
+
+export class AppRoutingModule {}
