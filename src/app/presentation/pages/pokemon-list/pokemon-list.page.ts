@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { InfiniteScrollCustomEvent, IonicModule } from '@ionic/angular';
 import { PokemonDetail } from 'src/app/domain/models/pokemon-detail.model';
 import { GetPokemonUseCase } from 'src/app/domain/usecases/get-pokemons.usecase';
@@ -10,7 +10,7 @@ import { GetPokemonUseCase } from 'src/app/domain/usecases/get-pokemons.usecase'
   templateUrl: './pokemon-list.page.html',
   styleUrls: ['./pokemon-list.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule],
+  imports: [IonicModule, CommonModule, RouterLink],
 })
 export class PokemonListPage implements OnInit {
   pokemons: PokemonDetail[] = [];

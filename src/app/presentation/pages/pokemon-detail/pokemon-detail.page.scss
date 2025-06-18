@@ -1,108 +1,136 @@
+/* Estilo para a imagem principal, garantindo que a arte pixelada fique nítida */
 .main-sprite {
   width: 150px;
-  // Faz com que as imagens pixeladas fiquem nítidas
-  image-rendering: pixelated;
+  height: 150px;
+  image-rendering: pixelated; /* Mantém os pixels quadrados e não borrados */
+}
+
+/* Estilização do botão de favoritos no cabeçalho */
+ion-header ion-toolbar ion-buttons[slot="end"] ion-button {
+  --padding-start: 10px;
+  --padding-end: 10px;
+
+  ion-icon {
+    font-size: 28px; // Deixa o ícone do coração um pouco maior
+  }
+}
+
+/* Estilos para os "chips" que mostram o tipo do Pokémon */
+.type-chip-container {
+  display: flex;
+  justify-content: center;
+  gap: 8px; /* Espaço entre os chips */
+  margin-bottom: 16px;
+}
+
+ion-chip {
+  text-transform: capitalize;
+  font-weight: bold;
+  border-radius: 16px;
+}
+
+/* Cores dinâmicas para cada tipo de Pokémon */
+.type-fire {
+  --background: #f57d31;
+  --color: #fff;
+}
+.type-grass {
+  --background: #74cb48;
+  --color: #212121;
+}
+.type-poison {
+  --background: #b45da3;
+  --color: #fff;
+}
+.type-water {
+  --background: #6493eb;
+  --color: #fff;
+}
+.type-bug {
+  --background: #a7b723;
+  --color: #fff;
+}
+.type-normal {
+  --background: #aaa67f;
+  --color: #fff;
+}
+.type-flying {
+  --background: #a891ec;
+  --color: #fff;
+}
+.type-electric {
+  --background: #f9cf30;
+  --color: #212121;
+}
+.type-ground {
+  --background: #dec16b;
+  --color: #212121;
+}
+.type-fairy {
+  --background: #e69eac;
+  --color: #212121;
+}
+.type-fighting {
+  --background: #c12239;
+  --color: #fff;
+}
+.type-psychic {
+  --background: #fb5584;
+  --color: #fff;
+}
+.type-rock {
+  --background: #b69e31;
+  --color: #fff;
+}
+.type-steel {
+  --background: #b7b9d0;
+  --color: #212121;
+}
+.type-ice {
+  --background: #9ad6df;
+  --color: #212121;
+}
+.type-ghost {
+  --background: #70559b;
+  --color: #fff;
+}
+.type-dragon {
+  --background: #7037ff;
+  --color: #fff;
+}
+.type-dark {
+  --background: #75574c;
+  --color: #fff;
+}
+
+/* Ajustes na lista de estatísticas para melhor alinhamento */
+ion-list-header {
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 .stat-name {
   flex-basis: 120px;
   flex-grow: 0;
   flex-shrink: 0;
+  font-size: 0.9rem;
+  color: var(--ion-color-medium);
 }
 
 .stat-bar {
   display: flex;
   align-items: center;
   width: 100%;
-  gap: 8px;
+  gap: 12px;
+
+  .stat-value {
+    font-weight: bold;
+    width: 30px;
+    text-align: right;
+  }
 
   ion-progress-bar {
     height: 8px;
     border-radius: 4px;
   }
-}
-
-.stat-value {
-  width: 30px;
-  text-align: right;
-}
-
-// Estilos dinâmicos para os tipos de Pokémon
-// Isso adiciona um toque visual muito legal
-.type-fire {
-  --background: #f08030;
-  --color: #fff;
-}
-.type-grass {
-  --background: #78c850;
-  --color: #212121;
-}
-.type-poison {
-  --background: #a040a0;
-  --color: #fff;
-}
-.type-water {
-  --background: #6890f0;
-  --color: #fff;
-}
-.type-bug {
-  --background: #a8b820;
-  --color: #fff;
-}
-.type-normal {
-  --background: #a8a878;
-  --color: #fff;
-}
-.type-flying {
-  --background: #a890f0;
-  --color: #fff;
-}
-.type-electric {
-  --background: #f8d030;
-  --color: #212121;
-}
-.type-ground {
-  --background: #e0c068;
-  --color: #212121;
-}
-.type-fairy {
-  --background: #ee99ac;
-  --color: #212121;
-}
-.type-fighting {
-  --background: #c03028;
-  --color: #fff;
-}
-.type-psychic {
-  --background: #f85888;
-  --color: #fff;
-}
-.type-rock {
-  --background: #b8a038;
-  --color: #fff;
-}
-.type-steel {
-  --background: #b8b8d0;
-  --color: #212121;
-}
-.type-ice {
-  --background: #98d8d8;
-  --color: #212121;
-}
-.type-ghost {
-  --background: #705898;
-  --color: #fff;
-}
-.type-dragon {
-  --background: #7038f8;
-  --color: #fff;
-}
-.type-dark {
-  --background: #705848;
-  --color: #fff;
-}
-
-// Para que a classe acima funcione no <ion-chip>
-ion-chip {
-  text-transform: capitalize;
 }

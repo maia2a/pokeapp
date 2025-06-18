@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { heart, heartOutline } from 'ionicons/icons';
 import { Observable, take } from 'rxjs';
 import { FavoritesService } from 'src/app/core/services/favorites.service';
 import { PokemonDetail } from 'src/app/domain/models/pokemon-detail.model';
@@ -11,7 +13,7 @@ import { GetPokemonByIdUseCase } from 'src/app/domain/usecases/get-pokemon-by-id
 @Component({
   selector: 'app-pokemon-detail',
   templateUrl: './pokemon-detail.page.html',
-  styleUrl: './pokemon-detail.page.scss',
+  styleUrls: ['./pokemon-detail.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule],
 })
@@ -23,7 +25,12 @@ export class PokemonDetailPage implements OnInit {
     private route: ActivatedRoute,
     private getPokemonByIdUseCase: GetPokemonByIdUseCase,
     private favoritesService: FavoritesService
-  ) {}
+  ) {
+    addIcons({
+      heart,
+      'heart-outline': heartOutline,
+    });
+  }
 
   ngOnInit() {
     const pokemonId = this.route.snapshot.paramMap.get('id');

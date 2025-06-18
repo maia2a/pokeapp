@@ -12,7 +12,12 @@
   </ion-header>
 
   <ion-list>
-    <ion-item *ngFor="let pokemon of pokemons">
+    <ion-item
+      *ngFor="let pokemon of pokemons"
+      [routerLink]="['/pokemon-detail', pokemon.id]"
+      button="true"
+      detail="true"
+    >
       <ion-avatar slot="start">
         <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
       </ion-avatar>
