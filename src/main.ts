@@ -4,11 +4,12 @@ import {
   IonicRouteStrategy,
   provideIonicAngular,
 } from '@ionic/angular/standalone';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 import { AppComponent } from './app/app.component';
 
 import { provideHttpClient } from '@angular/common/http';
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { routes } from './app/app.routes';
 import { PokemonRepositoryImpl } from './app/data/repositories/pokemon.repository.impl';
 import { PokemonRepository } from './app/domain/models/pokemon.repository';
@@ -29,5 +30,6 @@ bootstrapApplication(AppComponent, {
       provide: PokemonRepository,
       useClass: PokemonRepositoryImpl,
     },
+    importProvidersFrom(IonicStorageModule.forRoot()),
   ],
 });
