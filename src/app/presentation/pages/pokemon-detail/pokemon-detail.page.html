@@ -7,4 +7,93 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ng-container *ngIf="pokemon$ | async as pokemon">
+    <ion-card>
+      <ion-card-header class="ion-text-center">
+        <img
+          [src]="pokemon.sprites.front_default"
+          [alt]="pokemon.name"
+          class="main-sprite"
+        />
+        <ion-card-title class="ion-text-capitalize"
+          >{{pokemon.name}}</ion-card-title
+        >
+        <ion-card-subtitle class="ion-text-capitalize">
+          #{{pokemon.id.toString().padStart(4, '0')}}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="ion-text-center ion-margin-bottom">
+          <ion-chip
+            *ngFor="let type of pokemon.types"
+            [class]="'type-' + type.name"
+          >
+            <ion-label>{{type.name}}</ion-label>
+          </ion-chip>
+        </div>
+
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="5" class="ion-text-center">
+              <ion-label color="medium">Altura</ion-label>
+              <h3>{{pokemon.height / 10}} m</h3>
+            </ion-col>
+            <ion-col size="5" class="ion-text-center">
+              <ion-label color="medium">Peso</ion-label>
+              <h3>{{pokemon.weight / 10}} kg</h3>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-list-header> Base Stats </ion-list-header>
+        <ion-list lines="none" class="ion-padding-bottom">
+          <ion-item *ngFor="let stat of pokemon.stats">
+            <ion-label class="ion-text-capitalize stat-name"
+              >{{stat.name}}</ion-label
+            >
+            <div class="stat-bar">
+              <ion-label>{{stat.base_stat}}</ion-label>
+              <ion-progress-bar
+                [value]="stat.base_stat / 255"
+                color="primary"
+              ></ion-progress-bar>
+            </div>
+          </ion-item>
+        </ion-list>
+
+        <ion-list-header>Habilidades</ion-list-header>
+        <ion-list lines="full" class="ion-padding-bottom">
+          <ion-item *ngFor="let ability of pokemon.abilities">
+            <ion-label>{{ability.name}}</ion-label>
+            <ion-chip>
+              <ion-label>Escondido</ion-label>
+            </ion-chip>
+          </ion-item>
+        </ion-list>
+
+        <ion-list-header>Outras Informações</ion-list-header>
+        <ion-grid class="ion-text-center">
+          <ion-row>
+            <ion-col>
+              <img
+                [src]="pokemon.sprites.back_default"
+                alt="Back default sprite"
+              />
+            </ion-col>
+            <ion-col>
+              <img
+                [src]="pokemon.sprites.front_shiny"
+                alt="Front shiny sprite"
+              />
+            </ion-col>
+            <ion-col>
+              <img [src]="pokemon.sprites.back_shiny" alt="Back shiny sprite" />
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+</ion-content>

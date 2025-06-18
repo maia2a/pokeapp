@@ -1,0 +1,108 @@
+.main-sprite {
+  width: 150px;
+  // Faz com que as imagens pixeladas fiquem nítidas
+  image-rendering: pixelated;
+}
+
+.stat-name {
+  flex-basis: 120px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.stat-bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+
+  ion-progress-bar {
+    height: 8px;
+    border-radius: 4px;
+  }
+}
+
+.stat-value {
+  width: 30px;
+  text-align: right;
+}
+
+// Estilos dinâmicos para os tipos de Pokémon
+// Isso adiciona um toque visual muito legal
+.type-fire {
+  --background: #f08030;
+  --color: #fff;
+}
+.type-grass {
+  --background: #78c850;
+  --color: #212121;
+}
+.type-poison {
+  --background: #a040a0;
+  --color: #fff;
+}
+.type-water {
+  --background: #6890f0;
+  --color: #fff;
+}
+.type-bug {
+  --background: #a8b820;
+  --color: #fff;
+}
+.type-normal {
+  --background: #a8a878;
+  --color: #fff;
+}
+.type-flying {
+  --background: #a890f0;
+  --color: #fff;
+}
+.type-electric {
+  --background: #f8d030;
+  --color: #212121;
+}
+.type-ground {
+  --background: #e0c068;
+  --color: #212121;
+}
+.type-fairy {
+  --background: #ee99ac;
+  --color: #212121;
+}
+.type-fighting {
+  --background: #c03028;
+  --color: #fff;
+}
+.type-psychic {
+  --background: #f85888;
+  --color: #fff;
+}
+.type-rock {
+  --background: #b8a038;
+  --color: #fff;
+}
+.type-steel {
+  --background: #b8b8d0;
+  --color: #212121;
+}
+.type-ice {
+  --background: #98d8d8;
+  --color: #212121;
+}
+.type-ghost {
+  --background: #705898;
+  --color: #fff;
+}
+.type-dragon {
+  --background: #7038f8;
+  --color: #fff;
+}
+.type-dark {
+  --background: #705848;
+  --color: #fff;
+}
+
+// Para que a classe acima funcione no <ion-chip>
+ion-chip {
+  text-transform: capitalize;
+}
