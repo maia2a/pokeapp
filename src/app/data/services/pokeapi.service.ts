@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Pokemon } from '../../domain/models/pokemon.model';
 
-interface PokeApiResponse {
+// Interface para tipar a resposta da API de lista
+interface PokeApiListResponse {
   results: { name: string; url: string }[];
 }
 
@@ -11,19 +12,23 @@ interface PokeApiResponse {
   providedIn: 'root',
 })
 export class PokeApiService {
-  private readonly apiUrl = 'https://pokeapi.co/api/v2/pokemon';
+  private readonly API_URL = 'https://pokeapi.co/api/v2/pokemon';
 
   constructor(private http: HttpClient) {}
 
+  // MÉTODO PARA A LISTA DE POKÉMONS
   getPokemons(offset: number, limit: number): Observable<Pokemon[]> {
+    // A URL É CONSTRUÍDA COM UMA TEMPLATE STRING SIMPLES
+    const url = `${this.API_URL}?offset=${offset}&limit=${limit}`;
+
+    console.log('Buscando Pokémons em:', url); // Adicionamos um log para depuração
+
     return this.http
-      .get<PokeApiResponse>(
-        `<span class="math-inline">\{this\.API\_URL\}?offset\=</span>{offset}&limit=${limit}`
-      )
+      .get<PokeApiListResponse>(url) // Usamos a URL construída
       .pipe(
         map((response) => {
           return response.results.map((pokemonResult) => {
-            const id = this.getPokemonsIdFromUrl(pokemonResult.url);
+            const id = this.getPokemonIdFromUrl(pokemonResult.url);
             return {
               id,
               name: pokemonResult.name,
@@ -33,15 +38,16 @@ export class PokeApiService {
         })
       );
   }
-  private getPokemonsIdFromUrl(url: string): number {
-    // Ex: https://pokeapi.co/api/v2/pokemon/1/ -> extrai o "1"
-    const parts = url.split('/').filter((part) => !!part);
-    return +parts[parts.length - 1];
+
+  // MÉTODO PARA OS DETALHES DE UM POKÉMON
+  getPokemonById(id: number): Observable<any> {
+    const url = `${this.API_URL}/${id}`;
+    console.log('Buscando detalhes em:', url); // Adicionamos um log para depuração
+    return this.http.get<any>(url);
   }
 
-  getPokemonById(id: number): Observable<any> {
-    return this.http.get<any>(
-      `<span class="math-inline">\{this\.API\_URL\}/</span>{id}`
-    );
+  private getPokemonIdFromUrl(url: string): number {
+    const parts = url.split('/').filter((part) => !!part);
+    return +parts[parts.length - 1];
   }
 }
