@@ -3,7 +3,16 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/pokemon-list"> </ion-back-button>
     </ion-buttons>
-    <ion-title>{{(pokemon$ | async)?.name}}</ion-title>
+    <ion-title>{{(pokemon$ | async)?.name}} || 'Carregando...'</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleFavorite()">
+        <ion-icon
+          [name]="isFavorite$ | async ? 'heart' : 'heart-outline'"
+          slot="icon-only"
+          [color]="isFavorite$ | async ? 'danger' : 'medium'"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
