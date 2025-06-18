@@ -3,12 +3,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
 import {
+  IonAvatar,
   IonContent,
   IonHeader,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
+  IonItem,
+  IonLabel,
+  IonList,
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
-import { Pokemon } from 'src/app/domain/models/pokemon.model';
+import { PokemonDetail } from 'src/app/domain/models/pokemon-detail.model';
 import { GetPokemonUseCase } from 'src/app/domain/usecases/get-pokemons.usecase';
 
 @Component({
@@ -21,12 +27,18 @@ import { GetPokemonUseCase } from 'src/app/domain/usecases/get-pokemons.usecase'
     IonHeader,
     IonTitle,
     IonToolbar,
+    IonList,
+    IonItem,
+    IonAvatar,
+    IonLabel,
+    IonInfiniteScroll,
+    IonInfiniteScrollContent,
     CommonModule,
     FormsModule,
   ],
 })
 export class PokemonListPage implements OnInit {
-  pokemons: Pokemon[] = [];
+  pokemons: PokemonDetail[] = [];
   private offset = 0;
   private readonly limit = 25;
   constructor(private getPokemonsUseCase: GetPokemonUseCase) {}
@@ -36,7 +48,7 @@ export class PokemonListPage implements OnInit {
   }
 
   loadPokemons(event?: InfiniteScrollCustomEvent) {
-    this.getPokemonsUseCase.execute(this.limit, this.offset).subscribe({
+    this.getPokemonsUseCase.execute(this.offset, this.limit).subscribe({
       next: (newPokemons) => {
         this.pokemons = [...this.pokemons, ...newPokemons];
         this.offset += this.limit;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Pokemon } from '../models/pokemon.model';
+import { PokemonDetail } from '../models/pokemon-detail.model';
 import { PokemonRepository } from '../models/pokemon.repository';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class GetPokemonUseCase {
    * @param offset - O ponto de início da busca.
    * @param limit - O número de itens a serem buscados.
    */
-  execute(offset: number, limit: number): Observable<Pokemon[]> {
+  execute(offset: number, limit: number): Observable<PokemonDetail[]> {
     return this.pokemonRepository.getPokemons(offset, limit);
   }
 }

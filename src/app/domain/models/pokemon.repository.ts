@@ -13,4 +13,11 @@ export abstract class PokemonRepository {
     offset: number,
     limit: number
   ): Observable<PokemonDetail[]>;
+
+  /**
+   * Contrato para obter um Pokémon específico por ID.
+   * @param id - O ID do Pokémon a ser buscado.
+   * @returns Um Observable com os detalhes do Pokémon.
+   */
+  abstract getPokemonById(id: number): Observable<PokemonDetail>;
 }

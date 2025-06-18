@@ -38,4 +38,10 @@ export class PokeApiService {
     const parts = url.split('/').filter((part) => !!part);
     return +parts[parts.length - 1];
   }
+
+  getPokemonById(id: number): Observable<any> {
+    return this.http.get<any>(
+      `<span class="math-inline">\{this\.API\_URL\}/</span>{id}`
+    );
+  }
 }
