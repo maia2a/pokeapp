@@ -1,12 +1,3 @@
----
-### Como Usar:
-
-1.  No seu repositório do GitHub, clique no botão "Add file" e escolha "Create new file".
-2.  Nomeie o arquivo como `README.md`.
-3.  Copie e cole o conteúdo abaixo no arquivo.
-4.  **Importante:** Substitua o placeholder `[Link para o seu GIF aqui]` por um GIF real da sua aplicação. Este é o elemento de maior impacto do seu README.
----
-
 ```markdown
 # PokéApp | Desafio Front-end Ionic/Angular
 
